@@ -23,5 +23,5 @@
     action: community.docker.docker_container name=s1_container image=tomcat state=started network_mode=avi_network published_ports=8080:8080
 
   - name: copying file to tomcat webapps
-    action: community.docker.docker_container_copy_into "container=s1_container path=giiit/sample.war container_path=/usr/local/tomcat/webapps/sample.war"
+    action: community.docker.docker_container_copy_into container=s1_container path=giiit/sample.war container_path=/usr/local/tomcat/webapps/sample.war
     
