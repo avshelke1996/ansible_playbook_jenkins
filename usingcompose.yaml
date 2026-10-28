@@ -11,6 +11,9 @@
 # target
   - name: install docker
     action: dnf name=docker state=started
+
+  - name: clonning git repo
+    action: ansible.builtin.git url=https://github.com/avshelke1996/ansible_playbook_jenkins.git dest=giiit
   
   - name: create bridge network
     action: community.docker.docker_network name=avi_network driver=bridge state=present
@@ -18,5 +21,6 @@
   - name: create container with our network
     action: community.docker.docker_container name=s1_container image=tomcat state=started network_mode=avi_network published_ports=8080:8080
 
-  - name: download sample war
-    action: ansible.builtin.get_url url=https://tomcat.apache.org/tomcat-6.0-doc/appdev/sample/sample.war dest=/usr/local/tomcat/webapps/sample.war
+  - name: copying file to tomcat webapps
+    action: community.docker.docker_container_copy_into "container=s1_container src=giiit/sample.war container_path=/usr/local/tomcat/webapps/sample.war"
+    
