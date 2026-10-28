@@ -2,13 +2,13 @@ pipeline{
     agent{
         label{
             label 'built-in'
-            customWorkspace '/mnt/copmposeplaybook'
         }
     }
     stages{
         stage('clean'){
             steps{
                 echo "clean"
+                sh 'chmod 777 usingcompose.yaml'
             }
         }
         stage('build'){
