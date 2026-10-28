@@ -9,14 +9,8 @@ pipeline{
             steps{
                 echo "clean"
                 sh 'chmod 777 usingcompose.yaml'
-                sh '''
-				container=$(sudo docker ps -aq)
-				if [ -n "${container}" ]
-				then
-				sudo docker stop ${container} && sudo docker rm ${container}
-				fi
-				sudo docker volume rm myvol || true
-				'''
+                sh 'sudo docker stop s1_container || true'
+				sh 'sudo docker rm s1_container || true'
             }
         }
         stage('build'){
