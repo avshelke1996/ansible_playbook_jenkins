@@ -13,7 +13,7 @@ pipeline{
         }
         stage('build'){
             steps{
-                echo "build"
+                sh 'ansible-playbook .yaml'
             }
         }
         stage('test'){
