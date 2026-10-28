@@ -13,7 +13,7 @@ pipeline{
         }
         stage('build'){
             steps{
-                sh 'ansible-playbook .yaml'
+                sh 'ansible-playbook usingcompose.yaml'
             }
         }
         stage('test'){
