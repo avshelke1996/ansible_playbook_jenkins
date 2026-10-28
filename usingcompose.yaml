@@ -14,7 +14,7 @@
     action: dnf name=docker state=present
 
   - name: clonning git repo
-    action: ansible.builtin.git url=https://github.com/avshelke1996/ansible_playbook_jenkins.git dest=giiit
+    action: ansible.builtin.git repo=https://github.com/avshelke1996/ansible_playbook_jenkins.git dest=giiit
   
   - name: create bridge network
     action: community.docker.docker_network name=avi_network driver=bridge state=present
