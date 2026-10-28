@@ -9,6 +9,7 @@
   
   
 # target
+  tasks:
   - name: install docker
     action: dnf name=docker state=started
 
