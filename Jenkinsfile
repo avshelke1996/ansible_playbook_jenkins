@@ -13,6 +13,12 @@ pipeline{
         }
         stage('build'){
             steps{
+                sh '''
+            whoami
+            echo "HOME=$HOME"
+            ls -la ~/.ssh/ || true
+            ansible-playbook usingcompose.yaml
+        '''
                 sh 'ansible-playbook usingcompose.yaml'
             }
         }
