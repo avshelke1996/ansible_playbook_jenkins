@@ -8,6 +8,7 @@ pipeline{
         stage('clean'){
             steps{
                 echo "clean"
+				sh 'whoami'
                 sh 'chmod 777 usingcompose.yaml'
                 sh 'sudo docker stop s1_container || true'
 				sh 'sudo docker rm s1_container || true'
