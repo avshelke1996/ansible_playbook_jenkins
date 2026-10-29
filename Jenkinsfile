@@ -10,7 +10,7 @@ pipeline{
                 echo "clean"
 				sh '''
     sudo -u avi -- ansible-playbook \
-      /home/avi/usingcompose.yaml \
+      /home/avi/giiit/usingcompose.yaml \
       -i /etc/ansible/hosts
 '''
                 sh 'chmod 777 usingcompose.yaml'
