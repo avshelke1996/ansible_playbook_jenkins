@@ -7,14 +7,18 @@
   connection: ssh
   gather_facts: yes
   
-  
+  vars:
+    pkg: docker
+    path: /usr/local/tomcat/webapps/sample.war
+    giturl: https://github.com/avshelke1996/ansible_playbook_jenkins.git
+    
 # target
   tasks:
   - name: install docker
-    action: dnf name=docker state=present
+    action: dnf name="{{pkg}}" state=present
 
   - name: clonning git repo
-    action: ansible.builtin.git repo=https://github.com/avshelke1996/ansible_playbook_jenkins.git dest=giiit
+    action: ansible.builtin.git repo="{{giturl}}" dest=giiit
   
   - name: create bridge network
     action: community.docker.docker_network name=avi_network driver=bridge state=present
@@ -23,5 +27,5 @@
     action: community.docker.docker_container name=s1_container image=tomcat state=started network_mode=avi_network published_ports=8080:8080
 
   - name: copying file to tomcat webapps
-    action: community.docker.docker_container_copy_into container=s1_container path=giiit/sample.war container_path=/usr/local/tomcat/webapps/sample.war
+    action: community.docker.docker_container_copy_into container=s1_container path=giiit/sample.war container_path="{{path}}"
     
