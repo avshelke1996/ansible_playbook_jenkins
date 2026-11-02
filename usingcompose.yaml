@@ -24,7 +24,7 @@
 
   handlers:
   - name: clonning_git_repo
-    action: ansible.builtin.git repo="{{giturl}}" dest=giiit
+    action: ansible.builtin.git repo="{{giturl}}" dest=/home/avi/giiit
   
   - name: create_bridge_network
     action: community.docker.docker_network name=avi_network driver=bridge state=present
